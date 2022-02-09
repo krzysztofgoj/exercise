@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/app
+    command: /bin/bash -c "composer install --no-interaction --prefer-dist && nginx && php-fpm"
