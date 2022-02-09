@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(
  *     fields={"firstName", "lastName"},
  *     errorPath="person",
- *     message="Person with this first name and last name is already exist in database."
+ *     message="person.exist"
  * )
  */
 class Person
