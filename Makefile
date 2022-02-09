@@ -18,5 +18,15 @@ create-database:
 	docker-compose exec -T app bin/console doctrine:database:create
 	docker-compose exec -T app chmod -R 777 db/
 
+create-database-test:
+	docker-compose exec -T app bin/console --env=test doctrine:database:create
+	docker-compose exec -T app chmod -R 777 db/
+
 database-migrate:
 	docker-compose exec app bin/console doctrine:migrations:migrate
+
+database-migrate-test:
+	docker-compose exec app bin/console --env=test doctrine:migrations:migrate
+
+test:
+	docker-compose exec -T app bin/phpunit
