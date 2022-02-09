@@ -6,9 +6,21 @@ namespace App\Entity;
 
 use App\Repository\PersonRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get", "delete"}
+ * )
  * @ORM\Entity(repositoryClass=PersonRepository::class)
+ * @UniqueEntity(
+ *     fields={"firstName", "lastName"},
+ *     errorPath="person",
+ *     message="Person with this first name and last name is already exist in database."
+ * )
  */
 class Person
 {
@@ -21,11 +33,13 @@ class Person
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @SerializedName("imie")
      */
     private ?string $firstName = null;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @SerializedName("nazwisko")
      */
     private ?string $lastName = null;
 
