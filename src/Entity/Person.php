@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -34,12 +35,14 @@ class Person
     /**
      * @ORM\Column(type="string", length=255)
      * @SerializedName("imie")
+     * @Assert\NotBlank()
      */
     private ?string $firstName = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @SerializedName("nazwisko")
+     * @Assert\NotBlank()
      */
     private ?string $lastName = null;
 

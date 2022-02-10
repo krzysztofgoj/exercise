@@ -1,0 +1,7 @@
+App\Entity\Person:
+  person1:
+    firstName: testFirstName
+    lastName: testLastName
+  person{2..10}:
+    firstName: <firstName()>
+    lastName: <lastName()>
