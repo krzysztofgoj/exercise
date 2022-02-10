@@ -1,9 +1,6 @@
 start:
 	docker-compose up
 
-start-detached:
-	docker-compose up -d
-
 stop:
 	docker-compose stop
 
@@ -12,6 +9,8 @@ enter:
 
 composer-install:
 	docker-compose exec -T app composer install
+
+prepare-test-database: | create-database-test database-migrate-test
 
 create-database:
 	docker-compose exec -T app mkdir db
@@ -30,3 +29,6 @@ database-migrate-test:
 
 test:
 	docker-compose exec -T app bin/phpunit
+
+load-fixtures:
+	docker-compose exec app bin/console hautelook:fixtures:load --no-bundles
